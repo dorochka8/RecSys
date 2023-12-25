@@ -12,9 +12,9 @@ class IGMC(nn.Module):
 
     self.rel_graph_convs = torch.nn.ModuleList()
     self.rel_graph_convs.append(GCNConv(in_channels=total_features, out_channels=32, num_relations=2, num_bases=4))
-    self.rel_graph_convs.append(GCNConv(in_channels=32, out_channels=64, num_relations=2, num_bases=4))
-    self.rel_graph_convs.append(GCNConv(in_channels=64, out_channels=64, num_relations=2, num_bases=4))
-    self.rel_graph_convs.append(GCNConv(in_channels=64, out_channels=32, num_relations=2, num_bases=4))
+    self.rel_graph_convs.append(GCNConv(in_channels=32, out_channels=32, num_relations=2, num_bases=4))
+    self.rel_graph_convs.append(GCNConv(in_channels=32, out_channels=32, num_relations=2, num_bases=4))
+    self.rel_graph_convs.append(GCNConv(in_channels=32, out_channels=32, num_relations=2, num_bases=4))
     
     self.attention_layer = GATConv(in_channels=32, out_channels=512)
     self.linear_layer1 = nn.Linear(1024, 128)
@@ -34,7 +34,7 @@ class IGMC(nn.Module):
     # this one-hot encoding approach is a common way to represent 
     # nodes in graph-based recommendation systems. 
     # Each row of x then becomes the feature vector for a node,
-    #  where num_users + num_items is the total number of nodes.
+    # where num_users + num_items is the total number of nodes.
     x = torch.eye(self.num_users + self.num_items)
     edge_index = data.edge_index
 
