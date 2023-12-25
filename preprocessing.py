@@ -88,9 +88,3 @@ def do_subgraphs(train_data, global_user_mapping, global_movie_mapping, num_subg
         subgraph = Data(edge_index=edge_index, edge_attr=edge_attr, num_nodes=num_nodes)
         subgraphs.append(subgraph)
     return subgraphs
-
-
-
-path = 'data/'
-name = 'ratings.dat'
-train_data, test_data, num_users, num_items = preprocess_data(path, name, mode='graph')
