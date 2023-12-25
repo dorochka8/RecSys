@@ -15,4 +15,4 @@ class params:
     max_value = 10
     soft_tau = 1e-3
     buffer_size = 1000000
-    user_num =
+    user_num = 
