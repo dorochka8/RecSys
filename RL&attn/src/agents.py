@@ -48,20 +48,21 @@ class State_Repr_Module(nn.Module):
         self.user_embeddings = nn.Embedding(user_num, embedding_dim)
         self.item_embeddings = nn.Embedding(item_num+1, embedding_dim, padding_idx=int(item_num))
         self.drr_ave = torch.nn.Conv1d(in_channels=params.N, out_channels=1, kernel_size=1)
-        self.encoder_layer=nn.TransformerEncoderLayer(
-            d_model=embedding_dim,
-            nhead=4,
-            dropout=0,
-            batch_first=True,
-            activation="gelu",
-        )
+        ##UNCOMMENT TO USE ATTENTION WITHIN RL MODEL! (this is the idea that worked)
+        # self.encoder_layer=nn.TransformerEncoderLayer(
+        #     d_model=embedding_dim,
+        #     nhead=4,
+        #     dropout=0,
+        #     batch_first=True,
+        #     activation="gelu",
+        # )
         self.initialize()
 
     def forward(self, user, memory):
         user_embedding = self.user_embeddings(user.long())
 
         item_embeddings = self.item_embeddings(memory.long())
-        item_embeddings = self.encoder_layer(item_embeddings)
+        # item_embeddings = self.encoder_layer(item_embeddings)
         drr_ave = self.drr_ave(item_embeddings).squeeze(1)
         
         return torch.cat((user_embedding, user_embedding * drr_ave, drr_ave), 1)
