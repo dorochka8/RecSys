@@ -51,7 +51,7 @@ class State_Repr_Module(nn.Module):
         self.encoder_layer=nn.TransformerEncoderLayer(
             d_model=embedding_dim,
             nhead=4,
-            dropout=0.1,
+            dropout=0,
             batch_first=True,
             activation="gelu",
         )
