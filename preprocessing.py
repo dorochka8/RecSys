@@ -39,7 +39,7 @@ def preprocess_data(data_dir, train_rating, mode='graph', num_train_subgraphs=25
         user_num = data['user'].max() + 1
         item_num = data['item'].max() + 1
 
-        # defaultdict: defines values for unexistent (yet) keys ?/????//?/?
+        # defaultdict: defines values for unexistent (yet) keys
         train_mat = defaultdict(int)
         test_mat = defaultdict(int)
         
